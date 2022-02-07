@@ -69,7 +69,6 @@ function showNotes() {
 }
 
 function deleteNote(index) {
-    alert('deleting note')
 
     let notes = localStorage.getItem('notes')
 
@@ -94,12 +93,17 @@ search.addEventListener('input', function () {
     let notecards = document.getElementsByClassName('notecard')
     Array.from(notecards).forEach(function (element) {
         let cardTxt = element.getElementsByTagName("p")[0].innerText
-        if (cardTxt.includes(inputval)) {
+        let cardH = element.getElementsByTagName("h5")[0].innerText
+        cardTxt.toLocaleLowerCase()
+        cardH.toLocaleLowerCase()
+        if (cardTxt.toLocaleLowerCase().includes(inputval) || cardH.toLocaleLowerCase().includes(inputval)) {
             element.style.display = "block";
         }
         else {
             element.style.display = "none";
 
         }
+        
+        
     })
 })
